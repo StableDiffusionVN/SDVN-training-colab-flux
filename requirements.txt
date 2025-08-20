@@ -2,6 +2,6 @@ toml
 aria2
 OpenAI
 google-genai
-flash_attn==2.7.3
-onnx==1.15.0
-onnxruntime-gpu==1.17.1
+flash_attn
+# onnx==1.15.0
+# onnxruntime-gpu==1.17.1
