@@ -9,4 +9,4 @@ bitsandbytes
 lpips
 OpenAI
 google-genai
-flash_attn
+#flash_attn
