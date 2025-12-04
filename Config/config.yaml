@@ -40,6 +40,11 @@ config:
           # shrink_video_to_frames: true
           # num_frames: 1
           # do_i2v: true
+      logging:
+        use_wandb: false
+        project_name: ai_toolkit
+        run_name: name_of_run
+        log_every: 10
       train:
         batch_size: 1
         # bypass_guidance_embedding: false
@@ -57,6 +62,7 @@ config:
         # unload_text_encoder: false
         # cache_text_embeddings: false
         lr: 0.0001
+        lr_scheduler: "constant"
         ema_config:
           use_ema: false
           ema_decay: 0.99

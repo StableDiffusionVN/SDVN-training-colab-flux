@@ -23,6 +23,11 @@ config:
           shuffle_tokens: false  
           cache_latents_to_disk: true  
           resolution: [ 512, 768, 1024 ]
+      logging:
+        use_wandb: false
+        project_name: ai_toolkit
+        run_name: name_of_run
+        log_every: 10
       train:
         batch_size: 1
         steps: 1400
@@ -33,6 +38,7 @@ config:
         noise_scheduler: "flowmatch"
         optimizer: "adamw8bit"
         lr: 4e-4
+        lr_scheduler: "constant"
         ema_config:
           use_ema: true
           ema_decay: 0.99
