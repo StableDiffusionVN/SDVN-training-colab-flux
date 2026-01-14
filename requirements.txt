@@ -9,4 +9,6 @@ bitsandbytes
 lpips
 OpenAI
 google-genai
+av==16.0.1
+torchcodec
 #flash_attn
