@@ -3,11 +3,11 @@ job: "extension"
 config:
   name: "my_first_lora_v1"
   process:
-    - type: 'sd_trainer' #'sd_trainer' 'ui_trainer'
+    - type: "diffusion_trainer" #'sd_trainer' 'ui_trainer'
       training_folder: "/content/Lora"
-      device: cuda:0
+      device: cuda
       trigger_word: null
-      # performance_log_every: 10
+      performance_log_every: 10
       network:
         type: "lora"
         linear: 32
@@ -22,7 +22,7 @@ config:
         dtype: float16
         save_every: 250
         max_step_saves_to_keep: 100
-        # save_format: "diffusers"
+        save_format: "diffusers"
         push_to_hub: false
       datasets:
         - folder_path: "/content/"
@@ -36,10 +36,12 @@ config:
           # is_reg: false
           # network_weight: 1
           resolution: [1024]
-          # controls: []
-          # shrink_video_to_frames: true
-          # num_frames: 1
-          # do_i2v: true
+          controls: []
+          shrink_video_to_frames: true
+          num_frames: 1
+          flip_x: false
+          flip_y: false
+          num_repeats: 1
       logging:
         use_wandb: false
         project_name: ai_toolkit
@@ -55,10 +57,10 @@ config:
         gradient_checkpointing: true
         noise_scheduler: "flowmatch"
         optimizer: "adamw8bit"
-        # timestep_type: "sigmoid"
-        # content_or_style: "balanced"
-        # optimizer_params:
-        #   weight_decay: 0.0001
+        timestep_type: "shift"
+        content_or_style: "balanced"
+        optimizer_params:
+          weight_decay: 0.0001
         # unload_text_encoder: false
         # cache_text_embeddings: false
         lr: 0.0001
@@ -69,18 +71,24 @@ config:
         skip_first_sample: false
         disable_sampling: false
         dtype: "bf16"
-        # diff_output_preservation: false
-        # diff_output_preservation_multiplier: 1
-        # diff_output_preservation_class: "person"
+        diff_output_preservation: false
+        diff_output_preservation_multiplier: 1
+        diff_output_preservation_class: "person"
+        switch_boundary_every: 1
+        loss_type: "mse"
       model:
         name_or_path: "black-forest-labs/FLUX.1-dev"
         low_vram: false
         arch: "flux"
         quantize: true
-        # qtype: "qfloat8"
-        # quantize_te: true
-        # qtype_te: "qfloat8"
-        # model_kwargs: {}
+        qtype: "qfloat8"
+        quantize_te: true
+        qtype_te: "qfloat8"
+        model_kwargs:
+          match_target_res: false
+        layer_offloading: false
+        layer_offloading_text_encoder_percent: 1
+        layer_offloading_transformer_percent: 1
       sample:
         sampler: "flowmatch"
         sample_every: 250
