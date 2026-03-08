@@ -11,4 +11,5 @@ OpenAI
 google-genai
 av==16.0.1
 torchcodec
+aria2
 #flash_attn
