@@ -1,15 +1,4 @@
-lycoris-lora==1.8.3
-python-dotenv
-oyaml
-controlnet_aux==0.0.10
-k-diffusion
-open_clip_torch
-optimum-quanto==0.2.4
-bitsandbytes
-lpips
-OpenAI
+# Chỉ gồm gói notebook cần thêm. Gói của ai-toolkit cài từ ai-toolkit/requirements.txt
+openai
 google-genai
-av==16.0.1
-torchcodec
 aria2
-#flash_attn
